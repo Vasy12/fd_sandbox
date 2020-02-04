@@ -28,713 +28,126 @@
  2.4.7
  */
 
-/*
- * армия 1
- *   корпус 3
- *     дивизия 3-6
- *       бригада 4
- *         полк  2-4
- *           взвод 4
- *             отделение 4
- *                  солдат
- *
- * */
-
-class Component {
-  execute () {
-
-  }
-}
-
-class Leaf extends Component {
-
+class MenuUnit {
   /**
    *
-   * @param {number} count - count of solders
+   * @param {string} prefix
    */
-  constructor (count) {
-    super();
-    this.count = count;
-  }
-
-  get count () {
-    return this._count;
-  }
-
-  set count (value) {
-
-    if (Number.isInteger( value ) && value > 0) {
-      this._count = value;
-
-    } else {
-      throw new RangeError();
-    }
-
-  }
-
-  execute () {
-    return this.count;
-  }
-
-}
-
-class Composite extends Component {
-
-  /**
-   *
-   * @param {Array<Component>} children
-   */
-  constructor (children = []) {
-    super();
-    this.children = children;
-  }
-
-  get children () {
-    return this._children;
-  }
-
-  /**
-   *
-   * @param {Array<Component>} value
-   */
-  set children (value) {
-    this._children = value;
-  }
-
-  /**
-   *
-   * @param {Component} child
-   */
-  addChild (child) {
-    if (child instanceof Component) {
-      this.children.push( child );
-    }
-  }
-
-  execute () {
-    return this.children.reduce( (count, item) => {
-      return count + item.execute();
-    }, 0 );
-  }
-}
-
-const army = new Composite( [
-                              new Composite( [
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                             ] ),
-                              new Composite( [
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                               new Composite( [
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                                new Composite( [
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),
-                                                                                                ] ),
-                                                                                 new Composite( [
-                                                                                                  new Leaf( 20 ),
-                                                                                                  new Leaf( 21 ),
-                                                                                                  new Leaf( 18 ),
-                                                                                                  new Leaf( 20 ),] ),
-
-                                                                                 new Composite( [
-                                                                                                  new Leaf(
-                                                                                                    20 ),
-                                                                                                  new Leaf(
-                                                                                                    21 ),
-                                                                                                  new Leaf(
-                                                                                                    18 ),
-                                                                                                  new Leaf(
-                                                                                                    20 ),
-                                                                                                ] ),
-                                                                               ] ),
-                                                              ] ),
-                                             ] ),
-                            ] );
-
-console.log( 'Army solders count = ', army.execute() );
-
-/////////////////////////////////////
-
-
-
-
-class ArmyUnit {
-  getSoldersCount () {
+  log (prefix = '') {
 
   }
 }
 
-class Solder extends ArmyUnit {
-  constructor (status) {
-    super();
-    this.status = status;
-  }
-
-  get status () {
-    return this._status;
-  }
-
-  set status (status) {
-    this._status = status;
-  }
-
-  getSoldersCount () {
-
-    return status === 'ready'
-           ? 1
-           : 0;
-  }
-}
-
-class SpecificArmyUnit extends ArmyUnit {
+class MenuPosition {
   /**
    *
    * @param {string} name
    */
   constructor (name) {
-    super();
     this.name = name;
   }
 
-  get armyUnits () {
-    return this._armyUnits;
+  get name () {
+    return this._name;
+  }
+
+  set name (value) {
+    this._name = value;
+  }
+
+  log (prefix = '') {
+    console.log( `${prefix} ${this.name}` );
+  }
+}
+
+class Menu extends MenuUnit {
+  /**
+   *
+   * @param {string} name
+   * @param {Array<MenuUnit>} positions
+   */
+  constructor (name, positions = []) {
+    super();
+    this.name = name;
+    this.positions = positions;
+  }
+
+  get positions () {
+    return this._positions;
   }
 
   /**
    *
-   * @param {Array<ArmyUnit>} units
+   * @param {Array<MenuUnit>} value
    */
-  set armyUnits (units) {
-    this._armyUnits = units;
+  set positions (value) {
+    this._positions = value;
   }
 
-  getSoldersCount () {
-    return this.armyUnits.reduce( (count, item) => {
-      return count + item.getSoldersCount();
-    }, 0 );
+  /**
+   *
+   * @param {MenuUnit} position
+   */
+  addPosition (position) {
+    if (position instanceof MenuUnit) {
+      this.positions.push( position );
+    } else {
+      throw new TypeError();
+    }
   }
+
+  removePosition (position) {
+    const positionIndex = this.positions.findIndex( position );
+    if (positionIndex !== -1) {
+      this.positions.splice( positionIndex, 1 );
+    }
+  }
+
+  log (prefix) {
+    console.log( `${prefix} ${this.name}` );
+    this.positions.forEach( (item, index) => {
+                              item.log( `${prefix
+                                           ? `\t${prefix}.`
+                                           : '\t'}${index + 1}` );
+                            }
+    );
+  }
+
 }
+
+const menu = new Menu( 'Main menu' );
+
+menu.addPosition( new Menu( 'Submenu 1', [
+  new MenuPosition( 'Position 1' ),
+  new MenuPosition( 'Position 2' ),
+  new MenuPosition( 'Position 3' ),
+  new Menu( 'Submenu 1', [
+    new MenuPosition( 'Position 1' ),
+    new MenuPosition( 'Position 3' ),
+    new Menu( 'Position 4', [
+      new MenuPosition( 'Position 1' ),
+      new MenuPosition( 'Position 2' ),
+      new MenuPosition( 'Position 3' ),
+      new MenuPosition( 'Position 4' ),
+      new MenuPosition( 'Position 5' ),
+      new MenuPosition( 'Position 6' ),
+    ] ),
+    new MenuPosition( 'Position 5' ),
+  ] )
+] ) );
+
+menu.addPosition( new Menu( 'Submenu 2', [
+  new MenuPosition( 'Position 1' ),
+  new MenuPosition( 'Position 2' ),
+  new MenuPosition( 'Position 3' ),
+  new Menu( 'Submenu 1', [
+    new MenuPosition( 'Position 1' ),
+    new MenuPosition( 'Position 3' ),
+    new MenuPosition( 'Position 5' ),
+  ] ),
+  new MenuPosition( 'Position 4' ),
+  new MenuPosition( 'Position 5' ),
+  new MenuPosition( 'Position 6' ),
+] ) );
+
+menu.log();
